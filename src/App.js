@@ -64,6 +64,7 @@ class App extends Component {
     if(document.getElementById('formQuantity').value < 1) {
       document.getElementById('form').reset()
       document.getElementById('formQuantity').placeholder = "Please Enter 1 or Greater"
+      document.getElementById('formQuantity').classList.add("alert-warning")
     }
     else {
       let order = {
@@ -74,6 +75,7 @@ class App extends Component {
         OrderList: [...this.state.OrderList, order]
       })
       document.getElementById('formQuantity').placeholder = ""
+      document.getElementById('formQuantity').classList.remove("alert-warning")
       document.getElementById('form').reset()
     }
   }
