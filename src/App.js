@@ -61,7 +61,9 @@ class App extends Component {
 
   addToCart = (e) => {
     e.preventDefault()
-    if(document.getElementById('formQuantity').value.length === 0) {
+    if(document.getElementById('formQuantity').value < 1) {
+      document.getElementById('form').reset()
+      document.getElementById('formQuantity').placeholder = "Please Enter 1 or Greater"
     }
     else {
       let order = {
@@ -71,6 +73,7 @@ class App extends Component {
       this.setState({
         OrderList: [...this.state.OrderList, order]
       })
+      document.getElementById('formQuantity').placeholder = ""
       document.getElementById('form').reset()
     }
   }

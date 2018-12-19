@@ -3,9 +3,9 @@ import React from 'react';
 const AddItem = (props) => {
     return (
         <div className="container">
-        <form id="form">
+        <form id="form" className="form-group" onSubmit={props.addToCart}>
             <div >
-            <div className="form-group">
+            <div className="form-group has-danger">
                 <label>Quantity</label>
                 <input
                     type="number"
@@ -13,6 +13,7 @@ const AddItem = (props) => {
                     id="formQuantity"
                     aria-describedby="emailHelp"
                     name="Quantity"
+                    placeholder=""
                     onChange={props.onChange}/>
             </div>
             <div className="form-group">
@@ -34,7 +35,7 @@ const AddItem = (props) => {
             <button 
                 type="submit"
                 className="btn btn-primary"
-                onClick={props.addToCart}>Submit</button>
+                >Submit</button>
             </div>
         </form>
         </div>
