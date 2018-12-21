@@ -27,9 +27,9 @@ const AddItem = (props) => {
                             id="disabledInput"
                             type="text"
                             placeholder="Select an option..."
-                            value="40">Select an option...
+                            value="0">Select an option...
                         </option>
-                        {props.products.map(prod => <option key={prod.id} id={prod.id} value={prod.id}>{prod.name}</option>)}
+                        {props.products.map(prod => <option placeholder="Select an option..." key={prod.id} id={prod.id} value={prod.id}>{prod.name}</option>)}
                 </select>
             </div>
             <button 
