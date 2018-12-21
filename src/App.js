@@ -52,14 +52,12 @@ class App extends Component {
     e.target.reset()
   }
   
-  render() {
-    let cartItemsList = this.state.OrderList
-    
+  render() {    
     return (
       <div>
         <CartHeader />
         <CartItems
-          cartItemsList = {cartItemsList} />
+          cartItemsList = {this.state.OrderList} />
         <Total 
           orderList = {this.state.OrderList} />
         <AddItem
