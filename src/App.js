@@ -41,15 +41,14 @@ class App extends Component {
       subTotal: filteredProducts[0].priceInCents * e.target[0].value
       }
     }
-    e.target[0].value < 1 ?
-      this.setState( {
-        quantClass: "form-control alert-warning", 
-        placeHolder: "Please Enter 1 or Greater"})
-      : 
-      this.setState( {
-        OrderList: [...this.state.OrderList, order],
-        quantClass: "form-control", 
-        placeHolder: ""})
+    e.target[0].value < 1
+      ? this.setState( {
+          quantClass: "form-control alert-warning", 
+          placeHolder: "Please Enter 1 or Greater"})
+      : this.setState( {
+          OrderList: [...this.state.OrderList, order],
+          quantClass: "form-control", 
+          placeHolder: ""})
     e.target.reset()
   }
   
