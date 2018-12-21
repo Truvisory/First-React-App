@@ -21,68 +21,40 @@ class App extends Component {
         { id: 47, name: 'Ergonomic Bronze Lamp', priceInCents: 40000 },
         { id: 48, name: 'Awesome Leather Shoes', priceInCents: 3990 },
       ],
-      list: {
-        product: {
-          name: "",
-          id: "",
-          priceInCents: ""
-        },
-        quantity: 0,
-        subTotal: 0
-      }, 
       OrderList: []
     };
-  }
-  
-  onChange = (e) => {
-    console.log(e.target.value)
-    const val = e.target.value;
-    this.setState((state) => {
-      state.list.quantity = val
-      return state;
-    })
-  }
-
-  onSelect = (e) => {
-    e.preventDefault()
-    let filteredProducts = this.state.products.filter((stuff) => stuff.id === e.target.value *1)
-    this.setState({
-      list: {
-      product: {
-        name: filteredProducts[0].name,
-        id: e.target.value,
-        priceInCents: filteredProducts[0].priceInCents
-      },
-      quantity: this.state.list.quantity,
-      subTotal: filteredProducts[0].priceInCents * this.state.list.quantity
-    }
-    })
   }
 
   addToCart = (e) => {
     e.preventDefault()
-    if(document.getElementById('formQuantity').value < 1) {
-      document.getElementById('form').reset()
-      document.getElementById('formQuantity').placeholder = "Please Enter 1 or Greater"
-      document.getElementById('formQuantity').classList.add("alert-warning")
+    let filteredProducts = this.state.products.filter((stuff) => stuff.id === e.target[1].value *1)
+    if(e.target[0].value < 1) {
+      e.target.reset()
+      e.target[0].placeholder = "Please Enter 1 or Greater"
+      e.target[0].classList.add("alert-warning")
     }
-    else {
+    else {      
       let order = {
-        order: {...this.state.list},
-        orderId: this.state.OrderList.length + 1
+        order: {
+          product: {
+          name: filteredProducts[0].name,
+          id: e.target[1].value,
+          priceInCents: filteredProducts[0].priceInCents
+        },
+        quantity: e.target[0].value,
+        subTotal: filteredProducts[0].priceInCents * e.target[0].value
+        }
       }
-      this.setState({
+      this.setState( {
         OrderList: [...this.state.OrderList, order]
       })
-      document.getElementById('formQuantity').placeholder = ""
-      document.getElementById('formQuantity').classList.remove("alert-warning")
-      document.getElementById('form').reset()
+      e.target[0].placeholder = ""
+      e.target[0].classList.remove("alert-warning")
+      e.target.reset()
     }
   }
   
   render() {
-    console.log(this.state.OrderList)
-    
     let cartItemsList = this.state.OrderList
     
     return (
@@ -91,11 +63,9 @@ class App extends Component {
         <CartItems
           cartItemsList = {cartItemsList} />
         <Total 
-          orderList = {this.state.OrderList}/>
+          orderList = {this.state.OrderList} />
         <AddItem
           products = {this.state.products}
-          onSelect = {this.onSelect}
-          onChange = {this.onChange}
           addToCart = {this.addToCart} />
         <CartFooter
           copyright = {new Date().getFullYear()} />

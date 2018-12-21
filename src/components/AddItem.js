@@ -14,15 +14,14 @@ const AddItem = (props) => {
                     aria-describedby="emailHelp"
                     name="Quantity"
                     placeholder=""
-                    onChange={props.onChange}/>
+                    />
             </div>
             <div className="form-group">
                 <label>Products</label>
                 <select
                     className="form-control"
                     id="formSelect"
-                    name="products"
-                    onChange={props.onSelect}>
+                    name="products">
                         <option
                             className="form-control"
                             id="disabledInput"
