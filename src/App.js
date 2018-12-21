@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
 import CartHeader from './components/CartHeader.js'
 import CartFooter from './components/CartFooter.js'
 import CartItems from './components/CartItems.js'
-import AddItem from './components/AddItem.js';
+import AddItem from './components/AddItem.js'
 import Total from './components/Total.js'
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor(props) { 
+    super(props); 
     this.state = {
       products: [
         { id: 40, name: 'Mediocre Iron Watch', priceInCents: 399 },
@@ -19,28 +19,23 @@ class App extends Component {
         { id: 45, name: 'Awesome Bronze Pants', priceInCents: 399 },
         { id: 46, name: 'Intelligent Leather Clock', priceInCents: 2999 },
         { id: 47, name: 'Ergonomic Bronze Lamp', priceInCents: 40000 },
-        { id: 48, name: 'Awesome Leather Shoes', priceInCents: 3990 },
-      ],
+        { id: 48, name: 'Awesome Leather Shoes', priceInCents: 3990 },],
       OrderList: [],
       quantClass: "form-control",
       placeHolder: ""
-    };
+    }
   }
 
-  addToCart = (e) => {
-    e.preventDefault()
+  addToCart = (e) => { e.preventDefault()
     let filteredProducts = this.state.products.filter((stuff) => stuff.id === e.target[1].value *1)
     let order = {
       order: {
         product: {
         name: filteredProducts[0].name,
         id: e.target[1].value,
-        priceInCents: filteredProducts[0].priceInCents
-      },
+        priceInCents: filteredProducts[0].priceInCents},
       quantity: e.target[0].value,
-      subTotal: filteredProducts[0].priceInCents * e.target[0].value
-      }
-    }
+      subTotal: filteredProducts[0].priceInCents * e.target[0].value}}
     e.target[0].value < 1
       ? this.setState( {
           quantClass: "form-control alert-warning", 
@@ -49,10 +44,9 @@ class App extends Component {
           OrderList: [...this.state.OrderList, order],
           quantClass: "form-control", 
           placeHolder: ""})
-    e.target.reset()
-  }
-  
-  render() {    
+    e.target.reset()}
+
+  render() { 
     return (
       <div>
         <CartHeader />
@@ -68,7 +62,7 @@ class App extends Component {
         <CartFooter
           copyright = {new Date().getFullYear()} />
       </div>
-    );
+    )
   }
 }
 
