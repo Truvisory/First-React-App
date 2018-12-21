@@ -9,11 +9,11 @@ const AddItem = (props) => {
                 <label>Quantity</label>
                 <input
                     type="number"
-                    className="form-control"
+                    className={props.quantClass}
                     id="formQuantity"
                     aria-describedby="emailHelp"
                     name="Quantity"
-                    placeholder=""
+                    placeholder={props.placeHolder}
                     />
             </div>
             <div className="form-group">

@@ -21,7 +21,9 @@ class App extends Component {
         { id: 47, name: 'Ergonomic Bronze Lamp', priceInCents: 40000 },
         { id: 48, name: 'Awesome Leather Shoes', priceInCents: 3990 },
       ],
-      OrderList: []
+      OrderList: [],
+      quantClass: "form-control",
+      placeHolder: ""
     };
   }
 
@@ -30,8 +32,10 @@ class App extends Component {
     let filteredProducts = this.state.products.filter((stuff) => stuff.id === e.target[1].value *1)
     if(e.target[0].value < 1) {
       e.target.reset()
-      e.target[0].placeholder = "Please Enter 1 or Greater"
-      e.target[0].classList.add("alert-warning")
+      this.setState( {
+        quantClass: "form-control alert-warning",
+        placeHolder: "Please Enter 1 or Greater"
+      })
     }
     else {      
       let order = {
@@ -46,10 +50,10 @@ class App extends Component {
         }
       }
       this.setState( {
-        OrderList: [...this.state.OrderList, order]
+        OrderList: [...this.state.OrderList, order],
+        quantClass: "form-control",
+        placeHolder: ""
       })
-      e.target[0].placeholder = ""
-      e.target[0].classList.remove("alert-warning")
       e.target.reset()
     }
   }
@@ -66,7 +70,9 @@ class App extends Component {
           orderList = {this.state.OrderList} />
         <AddItem
           products = {this.state.products}
-          addToCart = {this.addToCart} />
+          addToCart = {this.addToCart} 
+          quantClass = {this.state.quantClass}
+          placeHolder = {this.state.placeHolder}/>
         <CartFooter
           copyright = {new Date().getFullYear()} />
       </div>
